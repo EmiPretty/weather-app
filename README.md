@@ -4,8 +4,8 @@ C'est une application React Native qui montre la météo actuelle et les prévis
 
 ## Fonctionnalités ✨
 
-- 🌡️ Affichage de la météo actuelle (température, description, icône).
-- 🌤️ Prévisions météorologiques pour les 5 prochains jours.
+- 🌡️ Affichage de la météo actuelle (température en Celsius, description, icône).
+- 🌤️ Prévisions météorologiques sur 5 jours toutes les trois heures.
 - 📍 Utilisation de la localisation de l'utilisateur pour afficher les données météo selon sa position.
 
 ## Prérequis 🔧
