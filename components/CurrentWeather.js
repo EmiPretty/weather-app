@@ -1,56 +1,84 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text, Card } from 'react-native-paper';
+import { Text, Card, ProgressBar } from 'react-native-paper';
+import { Animated } from 'react-native';
 
 const CurrentWeather = ({ weather }) => {
-  return (
-    <View style={styles.container}>
-      {/* Title at the top */}
-      <Text style={styles.title}>Météo actuelle</Text>
+  const fadeAnim = new Animated.Value(0);
 
-      <Card style={styles.card}>
+  React.useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
+  const temperature = weather.main.temp;
+  const tempPercent = Math.min((temperature + 10) / 50, 1);
+
+  return (
+    <Animated.View style={[styles.container, { opacity: fadeAnim }]}> 
+      <Text variant="headlineMedium" style={styles.title}>Current Weather</Text>
+
+      <Card mode="elevated" style={styles.card}>
         <Card.Content>
-        <Text variant="headlineSmall" style={styles.weatherText}>Ville: {weather.name}</Text>
-          <Text variant="bodyLarge" style={styles.weatherText}>Température: {weather.main.temp}°C</Text>
-          <Text variant="bodyMedium" style={styles.weatherText}>Description: {weather.weather[0].description}</Text>
+          <Text variant="titleLarge" style={styles.weatherText}>🌍 {weather.name}</Text>
+          <Text variant="bodyLarge" style={styles.weatherText}>🌡️ {temperature}°C</Text>
+          <Text variant="bodyMedium" style={styles.weatherText}>☁️ {weather.weather[0].description}</Text>
+          <ProgressBar progress={tempPercent} color="#FFD700" style={styles.progressBar} />
         </Card.Content>
         <Card.Cover
           source={{ uri: `http://openweathermap.org/img/wn/${weather.weather[0].icon}.png` }}
           style={styles.weatherIcon}
         />
       </Card>
-    </View>
+    </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20, 
+    marginTop: 50,
     alignItems: 'center',
-    marginVertical: 20,
   },
   title: {
-    fontSize: 24, 
+    fontSize: 26,
     fontWeight: 'bold',
-    marginBottom: 20, 
-    marginTop: 100,
+    marginBottom: 20,
+    marginTop: 30,
+    color: '#1E2A38', 
   },
   card: {
-    width: 300,
-    borderRadius: 10,
-    padding: 10,
+    width: 320,
+    borderRadius: 15,
+    padding: 15,
     alignItems: 'center',
-    backgroundColor: '#0C1D29',
+    backgroundColor: '#2C3E50', 
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    elevation: 5,
+    marginBottom:30,
   },
   weatherIcon: {
-    marginTop: 10,
-    width: 70,
-    height: 70,
+    marginTop: 15,
+    width: 80,
+    height: 80,
     alignSelf: 'center',
     backgroundColor: 'white',
+    borderRadius: 50,
   },
   weatherText: {
-    color: 'white'
+    color: 'white',
+    textAlign: 'center',
+    marginBottom: 5,
+  },
+  progressBar: {
+    marginTop: 10,
+    height: 8,
+    borderRadius: 5,
+    width: '100%',
   }
 });
 
