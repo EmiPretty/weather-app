@@ -5,7 +5,7 @@ import { Card, Chip } from 'react-native-paper';
 const Forecast = ({ forecast }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.previousWeather}>Weather Forecast</Text>
+      <Text style={styles.previousWeather}>Weather Forecast 🌤️</Text>
       <ScrollView contentContainerStyle={styles.scrollView} horizontal showsHorizontalScrollIndicator={false}>
         {forecast.list.map((item, index) => (
           <TouchableOpacity key={index} activeOpacity={0.8}>
@@ -36,7 +36,7 @@ const Forecast = ({ forecast }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
+    paddingTop: 20,
     paddingHorizontal: 10,
     backgroundColor: '#1A202C',
   },
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: 'bold',
     marginBottom: 15,
-    color: '#FFD700',
+    color: '#FFFFFF',
     paddingLeft: 15,
   },
   scrollView: {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   card: {
     marginHorizontal: 12,
     padding: 20,
-    height: 310,
+    height: 305,
     borderRadius: 18,
     backgroundColor: '#2C3E50',
     shadowColor: '#000',

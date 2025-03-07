@@ -19,7 +19,7 @@ const CurrentWeather = ({ weather }) => {
 
   return (
     <Animated.View style={[styles.container, { opacity: fadeAnim }]}> 
-      <Text variant="headlineMedium" style={styles.title}>Current Weather</Text>
+      <Text variant="headlineMedium" style={styles.title}>Current Weather 🌞</Text>
 
       <Card mode="elevated" style={styles.card}>
         <Card.Content>
